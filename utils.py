@@ -1,3 +1,4 @@
+from __future__ import print_function
 from pathlib import Path
 import torch
 
@@ -32,7 +33,7 @@ class Trainer(object):
                 loss.backward()
                 self.optimizer.step()
         mode = "train" if is_train else "test"
-        print(f">>>[{mode}] loss: {sum(loop_loss):.2f}/accuracy: {sum(accuracy) / len(data_loader.dataset):.2%}")
+        print(">>>[{}] loss: {:.2f}/accuracy: {:.2%}".format(mode,sum(loop_loss),sum(accuracy) / len(data_loader.dataset)))
         return loop_loss, accuracy
 
     def train(self, data_loader):
